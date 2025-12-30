@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional, List, Any
+from typing import Optional, List, Any, ForwardRef
 
 class LoanBase(BaseModel):
     borrower_name: Optional[str] = None
@@ -28,6 +28,8 @@ class LoanResponse(LoanBase):
     class Config:
         from_attributes = True
 
+# Import after base classes to avoid circular dependency
+from app.schemas.covenant import CovenantResponse
+
 class LoanWithCovenants(LoanResponse):
-    from app.schemas.covenant import CovenantResponse
     covenants: List[CovenantResponse] = []

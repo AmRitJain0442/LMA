@@ -83,4 +83,92 @@ export const covenantAPI = {
   },
 };
 
+export const proposalAPI = {
+  createProposal: async (data) => {
+    const response = await api.post('/api/loan-proposals/', data);
+    return response.data;
+  },
+
+  listProposals: async (status = null) => {
+    const params = status ? { status } : {};
+    const response = await api.get('/api/loan-proposals/', { params });
+    return response.data;
+  },
+
+  getProposal: async (id) => {
+    const response = await api.get(`/api/loan-proposals/${id}`);
+    return response.data;
+  },
+
+  getResearch: async (id) => {
+    const response = await api.get(`/api/loan-proposals/${id}/research`);
+    return response.data;
+  },
+
+  getPitch: async (id) => {
+    const response = await api.get(`/api/loan-proposals/${id}/pitch`);
+    return response.data;
+  },
+
+  triggerResearch: async (id) => {
+    const response = await api.post(`/api/loan-proposals/${id}/research`);
+    return response.data;
+  },
+
+  generatePitch: async (id) => {
+    const response = await api.post(`/api/loan-proposals/${id}/pitch`);
+    return response.data;
+  },
+};
+
+export const bankAPI = {
+  listBanks: async (filters = {}) => {
+    const response = await api.get('/api/banks/', { params: filters });
+    return response.data;
+  },
+
+  searchBanks: async (params) => {
+    const response = await api.get('/api/banks/search', { params });
+    return response.data;
+  },
+
+  getBank: async (id) => {
+    const response = await api.get(`/api/banks/${id}`);
+    return response.data;
+  },
+
+  getStats: async () => {
+    const response = await api.get('/api/banks/stats');
+    return response.data;
+  },
+};
+
+export const quotationAPI = {
+  createQuotations: async (data) => {
+    const response = await api.post('/api/quotations/', data);
+    return response.data;
+  },
+
+  listQuotations: async (status = null) => {
+    const params = status ? { status } : {};
+    const response = await api.get('/api/quotations/', { params });
+    return response.data;
+  },
+
+  getQuotationsForProposal: async (proposalId) => {
+    const response = await api.get(`/api/quotations/proposal/${proposalId}`);
+    return response.data;
+  },
+
+  getQuotation: async (id) => {
+    const response = await api.get(`/api/quotations/${id}`);
+    return response.data;
+  },
+
+  regenerateQuotation: async (id) => {
+    const response = await api.post(`/api/quotations/${id}/regenerate`);
+    return response.data;
+  },
+};
+
 export default api;

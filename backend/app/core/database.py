@@ -22,4 +22,5 @@ def get_db():
 def init_db():
     """Initialize database tables"""
     from app.models import loan, document, covenant
+    from app.models import bank, loan_proposal, mla_bid, client_research, pitch, quotation, syndicate
     Base.metadata.create_all(bind=engine)
