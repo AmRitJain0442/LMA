@@ -2,16 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #E0E5EC;
+    color: #3D4852;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  /* Neumorphic extruded surface */
+  .neu-surface {
+    background: #E0E5EC;
+    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
+                -8px -8px 16px rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+  }
+
+  /* Neumorphic inset surface */
+  .neu-inset {
+    background: #E0E5EC;
+    box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.6),
+                inset -8px -8px 16px rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+  }
+
+  /* Neumorphic button base */
+  .neu-button {
+    background: #E0E5EC;
+    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
+                -8px -8px 16px rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .neu-button:hover {
+    box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.7),
+                -12px -12px 24px rgba(255, 255, 255, 0.6);
+  }
+
+  .neu-button:active {
+    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Neumorphic input base */
+  .neu-input {
+    background: #E0E5EC;
+    box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.5),
+                inset -6px -6px 12px rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .neu-input:focus {
+    box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.6),
+                inset -8px -8px 16px rgba(255, 255, 255, 0.5),
+                0 0 0 3px rgba(108, 99, 255, 0.1);
+    outline: none;
+  }
+
+  /* Utility classes */
+  .neu-text-primary {
+    color: #3D4852;
+  }
+
+  .neu-text-muted {
+    color: #8B95A5;
+  }
+
+  .neu-text-accent {
+    color: #6C63FF;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for neumorphic design */
+  .neu-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .neu-scrollbar::-webkit-scrollbar-track {
+    background: #E0E5EC;
+    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.4);
+    border-radius: 8px;
+  }
+
+  .neu-scrollbar::-webkit-scrollbar-thumb {
+    background: #6C63FF;
+    border-radius: 8px;
+    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3);
+  }
+
+  .neu-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #8B83FF;
+  }
 }

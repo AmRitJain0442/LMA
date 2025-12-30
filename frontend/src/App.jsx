@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { FileText, BarChart3, AlertCircle, Building2, Briefcase } from 'lucide-react'
 import Dashboard from './pages/Dashboard'
 import DocumentUpload from './pages/DocumentUpload'
@@ -8,69 +8,86 @@ import ProposalsDashboard from './pages/ProposalsDashboard'
 import CreateProposal from './pages/CreateProposal'
 import ProposalDetail from './pages/ProposalDetail'
 
+function NavLink({ to, icon: Icon, children }) {
+  const location = useLocation()
+  const isActive = location.pathname === to ||
+    (to === '/proposals' && location.pathname.startsWith('/proposals'))
+
+  return (
+    <Link
+      to={to}
+      className={`
+        inline-flex items-center px-4 py-2 rounded-neu-sm
+        text-sm font-display font-semibold
+        transition-all duration-300
+        ${isActive
+          ? 'shadow-neu-inset neu-text-accent'
+          : 'shadow-neu neu-text-primary hover:shadow-neu-lg hover:-translate-y-0.5'
+        }
+      `.trim()}
+    >
+      <Icon className="w-4 h-4 mr-2" />
+      {children}
+    </Link>
+  )
+}
+
+function AppContent() {
+  return (
+    <div className="min-h-screen bg-neu-bg">
+      {/* Navigation */}
+      <nav className="bg-neu-bg shadow-neu sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 flex items-center">
+                <h1 className="text-3xl font-display font-bold neu-text-accent">LoanLattice</h1>
+                <span className="ml-3 px-3 py-1 text-xs font-display font-semibold bg-neu-accent text-white rounded-full shadow-md">
+                  AI-Powered
+                </span>
+              </div>
+            </div>
+
+            <div className="hidden sm:flex sm:space-x-4">
+              <NavLink to="/proposals" icon={Briefcase}>
+                Proposals
+              </NavLink>
+              <NavLink to="/" icon={BarChart3}>
+                Documents
+              </NavLink>
+              <NavLink to="/upload" icon={FileText}>
+                Upload
+              </NavLink>
+              <NavLink to="/covenants" icon={AlertCircle}>
+                Covenants
+              </NavLink>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <Routes>
+          {/* Syndication Marketplace */}
+          <Route path="/proposals" element={<ProposalsDashboard />} />
+          <Route path="/proposals/create" element={<CreateProposal />} />
+          <Route path="/proposals/:id" element={<ProposalDetail />} />
+
+          {/* Document Processing (Original MVP) */}
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/upload" element={<DocumentUpload />} />
+          <Route path="/covenants" element={<CovenantMonitor />} />
+        </Routes>
+      </main>
+    </div>
+  )
+}
+
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
-        {/* Navigation */}
-        <nav className="bg-white shadow-sm border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex">
-                <div className="flex-shrink-0 flex items-center">
-                  <h1 className="text-2xl font-bold text-blue-600">LoanLattice</h1>
-                  <span className="ml-2 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded">v0.2</span>
-                </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <Link
-                    to="/proposals"
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:border-gray-300"
-                  >
-                    <Briefcase className="w-4 h-4 mr-2" />
-                    Proposals
-                  </Link>
-                  <Link
-                    to="/"
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:border-gray-300"
-                  >
-                    <BarChart3 className="w-4 h-4 mr-2" />
-                    Documents
-                  </Link>
-                  <Link
-                    to="/upload"
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:border-gray-300"
-                  >
-                    <FileText className="w-4 h-4 mr-2" />
-                    Upload
-                  </Link>
-                  <Link
-                    to="/covenants"
-                    className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:border-gray-300"
-                  >
-                    <AlertCircle className="w-4 h-4 mr-2" />
-                    Covenants
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {/* Main Content */}
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <Routes>
-            {/* Syndication Marketplace */}
-            <Route path="/proposals" element={<ProposalsDashboard />} />
-            <Route path="/proposals/create" element={<CreateProposal />} />
-            <Route path="/proposals/:id" element={<ProposalDetail />} />
-
-            {/* Document Processing (Original MVP) */}
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/upload" element={<DocumentUpload />} />
-            <Route path="/covenants" element={<CovenantMonitor />} />
-          </Routes>
-        </main>
-      </div>
+      <AppContent />
     </Router>
   )
 }
