@@ -57,21 +57,49 @@ export default {
         'neu-inset-lg': 'inset 12px 12px 24px rgba(163, 177, 198, 0.6), inset -12px -12px 24px rgba(255, 255, 255, 0.5)',
       },
       animation: {
-        'neu-float': 'neuFloat 3s ease-in-out infinite',
-        'neu-pulse': 'neuPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'neu-float': 'neuFloat 6s ease-in-out infinite',
+        'neu-pulse': 'neuPulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'fade-in': 'fadeIn 1s ease-out',
+        'slide-up': 'slideUp 0.8s ease-out',
+        'slide-down': 'slideDown 0.8s ease-out',
+        'scale-in': 'scaleIn 0.6s ease-out',
+        'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
       },
       keyframes: {
         neuFloat: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '33%': { transform: 'translateY(-20px) rotate(2deg)' },
+          '66%': { transform: 'translateY(-10px) rotate(-2deg)' },
         },
         neuPulse: {
           '0%, 100%': {
             boxShadow: '8px 8px 16px rgba(163, 177, 198, 0.6), -8px -8px 16px rgba(255, 255, 255, 0.5)',
+            transform: 'scale(1)',
           },
           '50%': {
             boxShadow: '12px 12px 24px rgba(163, 177, 198, 0.7), -12px -12px 24px rgba(255, 255, 255, 0.6)',
+            transform: 'scale(1.05)',
           },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
         },
       },
     },

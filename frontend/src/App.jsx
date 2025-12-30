@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { FileText, BarChart3, AlertCircle, Building2, Briefcase } from 'lucide-react'
+import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import DocumentUpload from './pages/DocumentUpload'
 import CovenantMonitor from './pages/CovenantMonitor'
@@ -41,9 +42,11 @@ function AppContent() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
-                <h1 className="text-3xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent">
-                  LoanLattice
-                </h1>
+                <Link to="/">
+                  <h1 className="text-3xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent cursor-pointer">
+                    LoanLattice
+                  </h1>
+                </Link>
                 <span className="ml-3 px-3 py-1 text-xs font-display font-semibold bg-accent-gradient text-white rounded-full shadow-lg">
                   AI-Powered
                 </span>
@@ -54,7 +57,7 @@ function AppContent() {
               <NavLink to="/proposals" icon={Briefcase}>
                 Proposals
               </NavLink>
-              <NavLink to="/" icon={BarChart3}>
+              <NavLink to="/documents" icon={BarChart3}>
                 Documents
               </NavLink>
               <NavLink to="/upload" icon={FileText}>
@@ -69,7 +72,7 @@ function AppContent() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
         <Routes>
           {/* Syndication Marketplace */}
           <Route path="/proposals" element={<ProposalsDashboard />} />
@@ -77,7 +80,7 @@ function AppContent() {
           <Route path="/proposals/:id" element={<ProposalDetail />} />
 
           {/* Document Processing (Original MVP) */}
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/documents" element={<Dashboard />} />
           <Route path="/upload" element={<DocumentUpload />} />
           <Route path="/covenants" element={<CovenantMonitor />} />
         </Routes>
@@ -89,7 +92,13 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <Routes>
+        {/* Landing Page */}
+        <Route path="/" element={<Landing />} />
+
+        {/* App Routes with Navbar */}
+        <Route path="/*" element={<AppContent />} />
+      </Routes>
     </Router>
   )
 }
