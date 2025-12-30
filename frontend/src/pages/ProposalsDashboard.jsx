@@ -81,7 +81,7 @@ export default function ProposalsDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-4xl font-display font-bold neu-text-primary mb-2">
+          <h1 className="text-5xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent mb-2">
             Loan Proposals
           </h1>
           <p className="text-base neu-text-muted font-body">
@@ -98,8 +98,9 @@ export default function ProposalsDashboard() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <NeumorphicCard className="p-6" hover>
-          <div className="flex items-center space-x-4">
+        <NeumorphicCard className="p-6 relative overflow-hidden" hover>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gradient opacity-5 rounded-full blur-2xl"></div>
+          <div className="flex items-center space-x-4 relative z-10">
             <div className="flex-shrink-0">
               <NeumorphicCard className="p-3" size="sm" inset>
                 <FileText className="h-6 w-6 neu-text-muted" />
@@ -109,15 +110,16 @@ export default function ProposalsDashboard() {
               <dt className="text-sm font-display font-medium neu-text-muted truncate">
                 Total Proposals
               </dt>
-              <dd className="text-2xl font-display font-bold neu-text-primary mt-1">
+              <dd className="text-2xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent mt-1">
                 {proposals.length}
               </dd>
             </div>
           </div>
         </NeumorphicCard>
 
-        <NeumorphicCard className="p-6" hover>
-          <div className="flex items-center space-x-4">
+        <NeumorphicCard className="p-6 relative overflow-hidden" hover>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gradient opacity-5 rounded-full blur-2xl"></div>
+          <div className="flex items-center space-x-4 relative z-10">
             <div className="flex-shrink-0">
               <NeumorphicCard className="p-3" size="sm" inset>
                 <TrendingUp className="h-6 w-6 neu-text-accent" />
@@ -127,15 +129,16 @@ export default function ProposalsDashboard() {
               <dt className="text-sm font-display font-medium neu-text-muted truncate">
                 Active
               </dt>
-              <dd className="text-2xl font-display font-bold neu-text-primary mt-1">
+              <dd className="text-2xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent mt-1">
                 {proposals.filter(p => !['approved', 'rejected'].includes(p.status)).length}
               </dd>
             </div>
           </div>
         </NeumorphicCard>
 
-        <NeumorphicCard className="p-6" hover>
-          <div className="flex items-center space-x-4">
+        <NeumorphicCard className="p-6 relative overflow-hidden" hover>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-success-gradient opacity-5 rounded-full blur-2xl"></div>
+          <div className="flex items-center space-x-4 relative z-10">
             <div className="flex-shrink-0">
               <NeumorphicCard className="p-3" size="sm" inset>
                 <DollarSign className="h-6 w-6 text-neu-success" />
@@ -145,15 +148,16 @@ export default function ProposalsDashboard() {
               <dt className="text-sm font-display font-medium neu-text-muted truncate">
                 Total Value
               </dt>
-              <dd className="text-2xl font-display font-bold neu-text-primary mt-1">
+              <dd className="text-2xl font-display font-bold bg-success-gradient bg-clip-text text-transparent mt-1">
                 {formatCurrency(proposals.reduce((sum, p) => sum + (p.requested_amount || 0), 0))}
               </dd>
             </div>
           </div>
         </NeumorphicCard>
 
-        <NeumorphicCard className="p-6" hover>
-          <div className="flex items-center space-x-4">
+        <NeumorphicCard className="p-6 relative overflow-hidden" hover>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gradient opacity-5 rounded-full blur-2xl"></div>
+          <div className="flex items-center space-x-4 relative z-10">
             <div className="flex-shrink-0">
               <NeumorphicCard className="p-3" size="sm" inset>
                 <Building2 className="h-6 w-6 neu-text-accent" />
@@ -163,7 +167,7 @@ export default function ProposalsDashboard() {
               <dt className="text-sm font-display font-medium neu-text-muted truncate">
                 Completed
               </dt>
-              <dd className="text-2xl font-display font-bold neu-text-primary mt-1">
+              <dd className="text-2xl font-display font-bold bg-success-gradient bg-clip-text text-transparent mt-1">
                 {proposals.filter(p => p.status === 'approved').length}
               </dd>
             </div>
@@ -256,7 +260,7 @@ export default function ProposalsDashboard() {
                   <div className="mb-3">
                     <NeumorphicCard className="h-3 overflow-hidden" size="sm" inset>
                       <div
-                        className="h-full bg-gradient-to-r from-neu-accent to-neu-accent-light rounded-neu-sm transition-all duration-500"
+                        className="h-full bg-accent-gradient rounded-neu-sm transition-all duration-500 shadow-lg"
                         style={{ width: `${getProgress(proposal.status)}%` }}
                       ></div>
                     </NeumorphicCard>

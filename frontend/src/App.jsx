@@ -34,15 +34,17 @@ function NavLink({ to, icon: Icon, children }) {
 
 function AppContent() {
   return (
-    <div className="min-h-screen bg-neu-bg">
+    <div className="min-h-screen bg-neu-gradient">
       {/* Navigation */}
-      <nav className="bg-neu-bg shadow-neu sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+      <nav className="bg-gradient-to-r from-neu-bg-start via-neu-bg to-neu-bg-end shadow-neu sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
-                <h1 className="text-3xl font-display font-bold neu-text-accent">LoanLattice</h1>
-                <span className="ml-3 px-3 py-1 text-xs font-display font-semibold bg-neu-accent text-white rounded-full shadow-md">
+                <h1 className="text-3xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent">
+                  LoanLattice
+                </h1>
+                <span className="ml-3 px-3 py-1 text-xs font-display font-semibold bg-accent-gradient text-white rounded-full shadow-lg">
                   AI-Powered
                 </span>
               </div>

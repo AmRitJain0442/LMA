@@ -19,11 +19,11 @@ export default function NeumorphicBadge({
   ...props
 }) {
   const variantClasses = {
-    neutral: 'bg-neu-bg neu-text-primary',
-    success: 'bg-neu-success text-white',
-    warning: 'bg-neu-warning text-white',
-    danger: 'bg-neu-error text-white',
-    accent: 'bg-neu-accent text-white',
+    neutral: 'bg-gradient-to-br from-neu-bg-start to-neu-bg-end neu-text-primary',
+    success: 'bg-success-gradient text-white',
+    warning: 'bg-warning-gradient text-white',
+    danger: 'bg-error-gradient text-white',
+    accent: 'bg-accent-gradient text-white',
   }
 
   const sizeClasses = {

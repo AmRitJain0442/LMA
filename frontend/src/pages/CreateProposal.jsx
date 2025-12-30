@@ -63,17 +63,18 @@ export default function CreateProposal() {
   if (success) {
     return (
       <div className="max-w-3xl mx-auto">
-        <NeumorphicCard className="p-12 text-center">
-          <NeumorphicCard className="w-20 h-20 mx-auto mb-6 flex items-center justify-center" inset>
-            <CheckCircle className="h-12 w-12 text-neu-success" />
+        <NeumorphicCard className="p-12 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-success-gradient opacity-5"></div>
+          <NeumorphicCard className="w-20 h-20 mx-auto mb-6 flex items-center justify-center relative z-10 bg-success-gradient" inset>
+            <CheckCircle className="h-12 w-12 text-white" />
           </NeumorphicCard>
-          <h2 className="text-3xl font-display font-bold neu-text-primary mb-3">
+          <h2 className="text-3xl font-display font-bold bg-success-gradient bg-clip-text text-transparent mb-3 relative z-10">
             Proposal Created Successfully!
           </h2>
-          <p className="text-base neu-text-muted font-body mb-4">
+          <p className="text-base neu-text-muted font-body mb-4 relative z-10">
             AI research is now running in the background...
           </p>
-          <p className="text-sm neu-text-accent font-body font-semibold">
+          <p className="text-sm bg-accent-gradient bg-clip-text text-transparent font-body font-semibold relative z-10">
             Redirecting to proposal details...
           </p>
         </NeumorphicCard>
@@ -92,7 +93,7 @@ export default function CreateProposal() {
           <ArrowLeft className="h-4 w-4 mr-1" />
           Back to Proposals
         </button>
-        <h1 className="text-4xl font-display font-bold neu-text-primary mb-2">
+        <h1 className="text-5xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent mb-2">
           Create Loan Proposal
         </h1>
         <p className="text-base neu-text-muted font-body">

@@ -95,7 +95,7 @@ export default function ProposalDetail() {
         </button>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-display font-bold neu-text-primary mb-2">
+            <h1 className="text-5xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent mb-2">
               {proposal.client_name}
             </h1>
             <div className="flex items-center text-base neu-text-muted font-body space-x-3">
@@ -248,8 +248,9 @@ export default function ProposalDetail() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <NeumorphicCard className="p-6" size="sm">
-                <h4 className="text-lg font-display font-semibold neu-text-primary mb-4">
+              <NeumorphicCard className="p-6 relative overflow-hidden" size="sm">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-accent-gradient opacity-5 rounded-full blur-xl"></div>
+                <h4 className="text-lg font-display font-semibold bg-accent-gradient bg-clip-text text-transparent mb-4 relative z-10">
                   Financial Metrics
                 </h4>
                 <dl className="space-y-3">
@@ -280,8 +281,9 @@ export default function ProposalDetail() {
                 </dl>
               </NeumorphicCard>
 
-              <NeumorphicCard className="p-6" size="sm">
-                <h4 className="text-lg font-display font-semibold neu-text-primary mb-4">
+              <NeumorphicCard className="p-6 relative overflow-hidden" size="sm">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-warning-gradient opacity-5 rounded-full blur-xl"></div>
+                <h4 className="text-lg font-display font-semibold bg-warning-gradient bg-clip-text text-transparent mb-4 relative z-10">
                   Risk Assessment
                 </h4>
                 <div className="space-y-3">

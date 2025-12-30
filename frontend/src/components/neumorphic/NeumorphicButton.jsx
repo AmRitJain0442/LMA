@@ -26,11 +26,11 @@ export default function NeumorphicButton({
   ...props
 }) {
   const variantClasses = {
-    primary: 'neu-button neu-text-accent hover:neu-text-accent-light',
+    primary: 'bg-accent-gradient text-white shadow-neu hover:shadow-neu-lg',
     secondary: 'neu-button neu-text-primary',
-    success: 'bg-neu-success text-white shadow-neu hover:shadow-neu-lg',
-    warning: 'bg-neu-warning text-white shadow-neu hover:shadow-neu-lg',
-    danger: 'bg-neu-error text-white shadow-neu hover:shadow-neu-lg',
+    success: 'bg-success-gradient text-white shadow-neu hover:shadow-neu-lg',
+    warning: 'bg-warning-gradient text-white shadow-neu hover:shadow-neu-lg',
+    danger: 'bg-error-gradient text-white shadow-neu hover:shadow-neu-lg',
   }
 
   const sizeClasses = {

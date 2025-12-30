@@ -28,7 +28,7 @@ export default function NeumorphicCard({
   }
 
   const baseClasses = `
-    bg-neu-bg
+    ${inset ? 'bg-gradient-to-br from-neu-bg-end to-neu-bg-start' : 'bg-gradient-to-br from-neu-bg-start to-neu-bg-end'}
     ${sizeClasses[size]}
     rounded-neu
     transition-all
