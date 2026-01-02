@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
-import { FileText, BarChart3, AlertCircle, Building2, Briefcase } from 'lucide-react'
+import { FileText, BarChart3, AlertCircle, Building2, Briefcase, BookOpen } from 'lucide-react'
 import LandingNew from './pages/LandingNew'
 import Dashboard from './pages/Dashboard'
 import DocumentUpload from './pages/DocumentUpload'
@@ -8,6 +8,7 @@ import CovenantMonitor from './pages/CovenantMonitor'
 import ProposalsDashboard from './pages/ProposalsDashboard'
 import CreateProposal from './pages/CreateProposal'
 import ProposalDetail from './pages/ProposalDetail'
+import LMAGuide from './pages/LMAGuide'
 
 function NavLink({ to, icon: Icon, children }) {
   const location = useLocation()
@@ -54,6 +55,9 @@ function AppContent() {
             </div>
 
             <div className="hidden sm:flex sm:space-x-2">
+              <NavLink to="/lma-guide" icon={BookOpen}>
+                LMA Guide
+              </NavLink>
               <NavLink to="/proposals" icon={Briefcase}>
                 Proposals
               </NavLink>
@@ -74,6 +78,9 @@ function AppContent() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
         <Routes>
+          {/* LMA Knowledge Base */}
+          <Route path="/lma-guide" element={<LMAGuide />} />
+
           {/* Syndication Marketplace */}
           <Route path="/proposals" element={<ProposalsDashboard />} />
           <Route path="/proposals/create" element={<CreateProposal />} />
