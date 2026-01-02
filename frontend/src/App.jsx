@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { FileText, BarChart3, AlertCircle, Building2, Briefcase } from 'lucide-react'
-import Landing from './pages/Landing'
+import LandingNew from './pages/LandingNew'
 import Dashboard from './pages/Dashboard'
 import DocumentUpload from './pages/DocumentUpload'
 import CovenantMonitor from './pages/CovenantMonitor'
@@ -18,12 +18,12 @@ function NavLink({ to, icon: Icon, children }) {
     <Link
       to={to}
       className={`
-        inline-flex items-center px-4 py-2 rounded-neu-sm
-        text-sm font-display font-semibold
+        inline-flex items-center px-5 py-2.5 rounded-xl
+        text-sm font-semibold
         transition-all duration-300
         ${isActive
-          ? 'shadow-neu-inset neu-text-accent'
-          : 'shadow-neu neu-text-primary hover:shadow-neu-lg hover:-translate-y-0.5'
+          ? 'bg-gradient-duotone text-white shadow-lg'
+          : 'text-dark-700 hover:bg-primary-50 hover:text-primary-700'
         }
       `.trim()}
     >
@@ -35,25 +35,25 @@ function NavLink({ to, icon: Icon, children }) {
 
 function AppContent() {
   return (
-    <div className="min-h-screen bg-neu-gradient">
+    <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="bg-gradient-to-r from-neu-bg-start via-neu-bg to-neu-bg-end shadow-neu sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+      <nav className="glass-card sticky top-0 z-50 border-b border-dark-200 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <div className="flex-shrink-0 flex items-center">
                 <Link to="/">
-                  <h1 className="text-3xl font-display font-bold bg-accent-gradient bg-clip-text text-transparent cursor-pointer">
+                  <h1 className="text-3xl font-display font-bold text-gradient cursor-pointer">
                     LoanLattice
                   </h1>
                 </Link>
-                <span className="ml-3 px-3 py-1 text-xs font-display font-semibold bg-accent-gradient text-white rounded-full shadow-lg">
+                <span className="ml-3 px-3 py-1.5 text-xs font-semibold bg-gradient-duotone text-white rounded-full shadow-lg">
                   AI-Powered
                 </span>
               </div>
             </div>
 
-            <div className="hidden sm:flex sm:space-x-4">
+            <div className="hidden sm:flex sm:space-x-2">
               <NavLink to="/proposals" icon={Briefcase}>
                 Proposals
               </NavLink>
@@ -94,7 +94,7 @@ function App() {
     <Router>
       <Routes>
         {/* Landing Page */}
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<LandingNew />} />
 
         {/* App Routes with Navbar */}
         <Route path="/*" element={<AppContent />} />

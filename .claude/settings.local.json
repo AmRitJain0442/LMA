@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "WebFetch(domain:www.lma.eu.com)",
+      "Bash(pip install:*)",
+      "Bash(python lma_scraper.py:*)",
+      "Bash(python:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)"
+    ]
+  }
+}

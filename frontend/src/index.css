@@ -12,9 +12,12 @@
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, #E8EDF4 0%, #E0E5EC 50%, #D8DDE8 100%);
+    background: radial-gradient(ellipse at top left, rgba(99, 102, 241, 0.08), transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.08), transparent 50%),
+                linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     background-attachment: fixed;
-    color: #3D4852;
+    color: #1e293b;
+    min-height: 100vh;
   }
 
   code {
@@ -28,142 +31,315 @@
 }
 
 @layer components {
-  /* Neumorphic extruded surface */
-  .neu-surface {
-    background: linear-gradient(145deg, #E8EDF4, #D8DDE8);
-    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
-                -8px -8px 16px rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
-  }
-
-  /* Neumorphic inset surface */
-  .neu-inset {
-    background: linear-gradient(145deg, #D8DDE8, #E8EDF4);
-    box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.6),
-                inset -8px -8px 16px rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
-  }
-
-  /* Neumorphic button base */
-  .neu-button {
-    background: linear-gradient(145deg, #E8EDF4, #D8DDE8);
-    box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.6),
-                -8px -8px 16px rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
+  /* Glass Card - Modern glassmorphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .neu-button:hover {
-    background: linear-gradient(145deg, #EDF2F9, #DDE2ED);
-    box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.7),
-                -12px -12px 24px rgba(255, 255, 255, 0.6);
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 48px rgba(31, 38, 135, 0.2);
+    transform: translateY(-4px);
   }
 
-  .neu-button:active {
-    background: linear-gradient(145deg, #D8DDE8, #E8EDF4);
-    box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6),
-                inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+  /* Glass Card Dark Variant */
+  .glass-card-dark {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    color: white;
   }
 
-  /* Neumorphic input base */
-  .neu-input {
-    background: linear-gradient(145deg, #D8DDE8, #E8EDF4);
-    box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.5),
-                inset -6px -6px 12px rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
+  /* Gradient Button */
+  .btn-gradient {
+    background: linear-gradient(135deg, #6366F1 0%, #F97316 100%);
+    background-size: 200% 200%;
+    color: white;
     border: none;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .btn-gradient:hover {
+    background-position: 100% 0;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-gradient:hover::before {
+    transform: translateX(100%);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
+  }
+
+  /* Outlined Button */
+  .btn-outline {
+    background: transparent;
+    border: 2px solid;
+    border-image: linear-gradient(135deg, #6366F1, #F97316) 1;
+    color: #6366F1;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.3s ease;
   }
 
-  .neu-input:focus {
-    background: linear-gradient(145deg, #D3D8E3, #E3E8F4);
-    box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.6),
-                inset -8px -8px 16px rgba(255, 255, 255, 0.5),
-                0 0 0 3px rgba(108, 99, 255, 0.15);
+  .btn-outline:hover {
+    background: linear-gradient(135deg, #6366F1 0%, #F97316 100%);
+    color: white;
+    border-color: transparent;
+  }
+
+  /* Input Field */
+  .input-modern {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 15px;
+    transition: all 0.3s ease;
     outline: none;
   }
 
-  /* Gradient text utility */
-  .neu-gradient-text {
-    background: linear-gradient(135deg, #6C63FF, #8B83FF);
+  .input-modern:focus {
+    border-color: #6366F1;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(135deg, #6366F1 0%, #F97316 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Utility classes */
-  .neu-text-primary {
-    color: #3D4852;
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .neu-text-muted {
-    color: #8B95A5;
+  .text-gradient-secondary {
+    background: linear-gradient(135deg, #F97316 0%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .neu-text-accent {
-    color: #6C63FF;
+  /* Badge Component */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+  }
+
+  .badge-primary {
+    background: rgba(99, 102, 241, 0.15);
+    color: #4338CA;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+  }
+
+  .badge-secondary {
+    background: rgba(249, 115, 22, 0.15);
+    color: #c2410c;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+  }
+
+  .badge-success {
+    background: rgba(20, 184, 166, 0.15);
+    color: #0f766e;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+  }
+
+  /* Floating Elements */
+  .floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .floating-orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #6366F1, transparent);
+    animation: drift 15s ease-in-out infinite;
+  }
+
+  .floating-orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, #F97316, transparent);
+    animation: drift 20s ease-in-out infinite reverse;
+  }
+
+  .floating-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #14B8A6, transparent);
+    animation: drift 18s ease-in-out infinite;
   }
 }
 
 @layer utilities {
-  /* Custom scrollbar for neumorphic design */
-  .neu-scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  /* Custom Modern Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
   }
 
-  .neu-scrollbar::-webkit-scrollbar-track {
-    background: linear-gradient(145deg, #D8DDE8, #E8EDF4);
-    box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.4);
-    border-radius: 8px;
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 10px;
   }
 
-  .neu-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #8B83FF, #6C63FF);
-    border-radius: 8px;
-    box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3);
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6366F1, #F97316);
+    border-radius: 10px;
+    transition: all 0.3s ease;
   }
 
-  .neu-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #9D95FF, #8B83FF);
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4F46E5, #ea580c);
   }
 
-  /* Shimmer animation for loading states */
-  @keyframes shimmer {
-    0% {
-      background-position: -1000px 0;
-    }
-    100% {
-      background-position: 1000px 0;
-    }
+  /* Parallax Effect */
+  .parallax {
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
 
-  .shimmer {
-    animation: shimmer 2s infinite linear;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    background-size: 1000px 100%;
+  .parallax-layer {
+    transform: translateZ(0);
+    will-change: transform;
   }
 
-  /* Gradient border effect */
-  .gradient-border {
+  /* Glow Effect */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4),
+                0 0 40px rgba(99, 102, 241, 0.2);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4),
+                0 0 40px rgba(249, 115, 22, 0.2);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.4),
+                0 0 40px rgba(20, 184, 166, 0.2);
+  }
+
+  /* Grid Pattern Background */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Dot Pattern Background */
+  .dot-pattern {
+    background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Mesh Gradient Background */
+  .mesh-gradient {
+    background:
+      radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.3) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(249, 115, 22, 0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(20, 184, 166, 0.3) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(249, 115, 22, 0.2) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, rgba(20, 184, 166, 0.2) 0px, transparent 50%);
+  }
+
+  /* Text Shadow */
+  .text-shadow-soft {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+
+  /* Frosted Glass Effect */
+  .frosted {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+  }
+
+  /* Gradient Border */
+  .gradient-border-box {
     position: relative;
-    background: linear-gradient(145deg, #E8EDF4, #D8DDE8);
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, #6366F1, #F97316);
   }
 
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, #8B83FF, #6C63FF);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+  .gradient-border-box > * {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  /* Animated Background */
+  .animated-bg {
+    background: linear-gradient(270deg, #6366F1, #F97316, #14B8A6);
+    background-size: 600% 600%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  /* Hide Scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
